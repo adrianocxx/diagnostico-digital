@@ -1,85 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico Interativo de Maturidade Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Biblioteca para gerar PDF a partir de HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* bg-slate-50 */
+            background-color: #f8fafc; /* bg-slate-50 */ 
         }
-
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0); 
             }
         }
-        
         .conditional-field {
             display: none;
             padding-left: 1.5rem;
             margin-top: 1rem;
             border-left: 2px solid #e2e8f0;
         }
-
-        /* Estilos de Impressão (Fallback) */
+        /* Estilos de Impressão (Fallback) */ 
         @media print {
             body * {
-                visibility: hidden;
+                visibility: hidden; 
             }
             #report-wrapper, #report-wrapper * {
-                visibility: visible;
+                visibility: visible; 
             }
             #report-wrapper {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                width: 100%; 
                 margin: 0;
                 padding: 0;
                 box-shadow: none;
                 border: none;
             }
             .no-print {
-                display: none;
+                display: none; 
             }
         }
     </style>
 </head>
-
 <body class="text-slate-800">
 
     <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-7xl">
 
-        <!-- Formulário de Entrada -->
         <div id="form-wrapper" class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-slate-200 mb-10 no-print">
             <header class="text-center mb-8">
                 <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">Diagnóstico de Maturidade Digital</h1>
                 <p class="mt-3 text-lg text-slate-600">Preencha para gerar uma análise instantânea e personalizada.</p>
             </header>
-            
-            <!-- Campos do Formulário -->
+
             <div class="space-y-8">
-                <!-- Seção: Informações Gerais -->
                 <fieldset>
-                    <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Informações Gerais</legend>
+                    <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Informações Gerais</legend> 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div>
                             <label for="nome" class="block text-sm font-medium text-slate-700 mb-1">Nome da empresa</label>
@@ -100,31 +89,33 @@
                                 <option value="energia">Energia</option>
                             </select>
                         </div>
-                         <div>
+                        <div>
                             <label for="faturamentoMensal" class="block text-sm font-medium text-slate-700 mb-1">Faturamento Mensal (R$)</label>
                             <input type="number" id="faturamentoMensal" placeholder="50000" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
                         </div>
                         <div>
                             <label for="metaAnual" class="block text-sm font-medium text-slate-700 mb-1">Meta Faturamento Anual (R$)</label>
-                            <input type="number" id="metaAnual" placeholder="1200000" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                            <input type="number" id="metaAnual" placeholder="1200000" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"> 
                         </div>
                         <div>
                             <label for="ticketMedio" class="block text-sm font-medium text-slate-700 mb-1">Ticket Médio (R$)</label>
-                            <input type="number" id="ticketMedio" placeholder="5000" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition">
+                            <input type="number" id="ticketMedio" placeholder="5000" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition"> 
                         </div>
                     </div>
                 </fieldset>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Coluna 1: Marketing e Captação -->
                     <div class="space-y-8">
                         <fieldset>
-                             <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Marketing</legend>
-                             <div class="space-y-4">
-                                <div class="p-3 bg-slate-50 rounded-lg border">
+                            <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Marketing</legend>
+                            <div class="space-y-4">
+                                <div class="p-3 bg-slate-50 rounded-lg border"> 
                                     <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Investe em marketing?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="investeMarketing" value="sim" onclick="toggleConditional('marketing-details', true)"><label>Sim</label><input type="radio" name="investeMarketing" value="nao" onclick="toggleConditional('marketing-details', false)" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="investeMarketing" value="sim" onclick="toggleConditional('marketing-details', true)"><label>Sim</label>
+                                            <input type="radio" name="investeMarketing" value="nao" onclick="toggleConditional('marketing-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
                                     <div id="marketing-details" class="conditional-field space-y-4">
                                         <div>
@@ -142,10 +133,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 bg-slate-50 rounded-lg border">
+                                <div class="p-3 bg-slate-50 rounded-lg border"> 
                                     <div class="flex items-center justify-between">
-                                        <label class="font-medium text-slate-800">Produz conteúdo?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="produzConteudo" value="sim" onclick="toggleConditional('conteudo-details', true)"><label>Sim</label><input type="radio" name="produzConteudo" value="nao" onclick="toggleConditional('conteudo-details', false)" checked><label>Não</label></div>
+                                        <label class="font-medium text-slate-800">Produz conteúdo?</label> 
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="produzConteudo" value="sim" onclick="toggleConditional('conteudo-details', true)"><label>Sim</label>
+                                            <input type="radio" name="produzConteudo" value="nao" onclick="toggleConditional('conteudo-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
                                     <div id="conteudo-details" class="conditional-field">
                                         <label class="block text-sm font-medium text-slate-600">Onde?</label>
@@ -157,12 +151,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="p-3 bg-slate-50 rounded-lg border">
-                                     <div class="flex items-center justify-between">
+                                <div class="p-3 bg-slate-50 rounded-lg border">
+                                    <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Faz Anúncios?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="fazAnuncios" value="sim" onclick="toggleConditional('anuncios-details', true)"><label>Sim</label><input type="radio" name="fazAnuncios" value="nao" onclick="toggleConditional('anuncios-details', false)" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="fazAnuncios" value="sim" onclick="toggleConditional('anuncios-details', true)"><label>Sim</label>
+                                            <input type="radio" name="fazAnuncios" value="nao" onclick="toggleConditional('anuncios-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
-                                     <div id="anuncios-details" class="conditional-field">
+                                    <div id="anuncios-details" class="conditional-field">
                                         <label class="block text-sm font-medium text-slate-600">Em quais canais?</label>
                                         <div class="grid grid-cols-2 gap-2 mt-2">
                                             <div><input type="checkbox" id="anuncios-google" class="mr-2"><label for="anuncios-google">Google</label></div>
@@ -172,17 +169,21 @@
                                         </div>
                                     </div>
                                 </div>
-                             </div>
+                            </div>
                         </fieldset>
-                         <fieldset>
-                             <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Captação</legend>
-                             <div class="space-y-4">
-                                 <div class="p-3 bg-slate-50 rounded-lg border">
-                                     <div class="flex items-center justify-between">
+
+                        <fieldset>
+                            <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Captação</legend> 
+                            <div class="space-y-4">
+                                <div class="p-3 bg-slate-50 rounded-lg border">
+                                    <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Faz Captação de Leads?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="fazCaptacao" value="sim" onclick="toggleConditional('captacao-details', true)"><label>Sim</label><input type="radio" name="fazCaptacao" value="nao" onclick="toggleConditional('captacao-details', false)" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="fazCaptacao" value="sim" onclick="toggleConditional('captacao-details', true)"><label>Sim</label>
+                                            <input type="radio" name="fazCaptacao" value="nao" onclick="toggleConditional('captacao-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
-                                     <div id="captacao-details" class="conditional-field space-y-4">
+                                    <div id="captacao-details" class="conditional-field space-y-4">
                                         <div>
                                             <label class="block text-sm font-medium text-slate-600">Inbound, Outbound ou Ambos?</label>
                                             <select id="tipoCaptacao" class="w-full p-2 mt-1 border border-slate-300 rounded-md bg-white">
@@ -193,38 +194,53 @@
                                         </div>
                                         <div>
                                             <label class="block text-sm font-medium text-slate-600">Utiliza Landing Pages?</label>
-                                             <div class="flex items-center gap-3 mt-1"><input type="radio" name="usaLp" value="sim"><label>Sim</label><input type="radio" name="usaLp" value="nao" checked><label>Não</label></div>
+                                            <div class="flex items-center gap-3 mt-1">
+                                                <input type="radio" name="usaLp" value="sim"><label>Sim</label>
+                                                <input type="radio" name="usaLp" value="nao" checked><label>Não</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="p-3 bg-slate-50 rounded-lg border">
                                     <label class="font-medium text-slate-800">Usa UTMs para rastreio?</label>
-                                    <div class="flex items-center gap-3 float-right"><input type="radio" name="usaUtm" value="sim"><label>Sim</label><input type="radio" name="usaUtm" value="nao" checked><label>Não</label></div>
+                                    <div class="flex items-center gap-3 float-right">
+                                        <input type="radio" name="usaUtm" value="sim"><label>Sim</label>
+                                        <input type="radio" name="usaUtm" value="nao" checked><label>Não</label>
+                                    </div>
                                 </div>
                                 <div class="p-3 bg-slate-50 rounded-lg border">
-                                    <label class="font-medium text-slate-800">Possui trackeamento?</label>
-                                    <div class="flex items-center gap-3 float-right"><input type="radio" name="temTrackeamento" value="sim"><label>Sim</label><input type="radio" name="temTrackeamento" value="nao" checked><label>Não</label></div>
+                                    <label class="font-medium text-slate-800">Possui trackeamento?</label> 
+                                    <div class="flex items-center gap-3 float-right">
+                                        <input type="radio" name="temTrackeamento" value="sim"><label>Sim</label>
+                                        <input type="radio" name="temTrackeamento" value="nao" checked><label>Não</label>
+                                    </div>
                                 </div>
-                             </div>
+                            </div>
                         </fieldset>
                     </div>
-                    <!-- Coluna 2: Processos e Comercial -->
+
                     <div class="space-y-8">
-                         <fieldset>
-                             <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Processos</legend>
-                             <div class="space-y-4">
+                        <fieldset>
+                            <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Processos</legend>
+                            <div class="space-y-4">
                                 <div class="p-3 bg-slate-50 rounded-lg border">
-                                     <div class="flex items-center justify-between">
+                                    <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Usa CRM?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="usaCrm" value="sim"><label>Sim</label><input type="radio" name="usaCrm" value="nao" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="usaCrm" value="sim"><label>Sim</label>
+                                            <input type="radio" name="usaCrm" value="nao" checked><label>Não</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="p-3 bg-slate-50 rounded-lg border">
                                     <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Faz análise de dados?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="analiseDados" value="sim" onclick="toggleConditional('analise-details', true)"><label>Sim</label><input type="radio" name="analiseDados" value="nao" onclick="toggleConditional('analise-details', false)" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="analiseDados" value="sim" onclick="toggleConditional('analise-details', true)"><label>Sim</label>
+                                            <input type="radio" name="analiseDados" value="nao" onclick="toggleConditional('analise-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
-                                     <div id="analise-details" class="conditional-field">
+                                    <div id="analise-details" class="conditional-field">
                                         <label class="block text-sm font-medium text-slate-600">Como?</label>
                                         <div class="grid grid-cols-2 gap-2 mt-2">
                                             <div><input type="checkbox" id="analise-planilha" class="mr-2"><label for="analise-planilha">Planilha</label></div>
@@ -234,357 +250,356 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 bg-slate-50 rounded-lg border">
+                                <div class="p-3 bg-slate-50 rounded-lg border"> 
                                     <label class="font-medium text-slate-800">Utiliza WhatsApp para atendimento?</label>
-                                    <div class="flex items-center gap-3 float-right"><input type="radio" name="usaWhatsapp" value="sim"><label>Sim</label><input type="radio" name="usaWhatsapp" value="nao" checked><label>Não</label></div>
+                                    <div class="flex items-center gap-3 float-right">
+                                        <input type="radio" name="usaWhatsapp" value="sim"><label>Sim</label>
+                                        <input type="radio" name="usaWhatsapp" value="nao" checked><label>Não</label>
+                                    </div>
                                 </div>
-                             </div>
+                            </div>
                         </fieldset>
+
                         <fieldset>
-                             <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Comercial</legend>
-                             <div class="space-y-4">
+                            <legend class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Comercial</legend>
+                            <div class="space-y-4">
                                 <div class="p-3 bg-slate-50 rounded-lg border">
                                     <div class="flex items-center justify-between">
                                         <label class="font-medium text-slate-800">Possui estrutura comercial?</label>
-                                        <div class="flex items-center gap-3"><input type="radio" name="temTime" value="sim" onclick="toggleConditional('time-details', true)"><label>Sim</label><input type="radio" name="temTime" value="nao" onclick="toggleConditional('time-details', false)" checked><label>Não</label></div>
+                                        <div class="flex items-center gap-3">
+                                            <input type="radio" name="temTime" value="sim" onclick="toggleConditional('time-details', true)"><label>Sim</label>
+                                            <input type="radio" name="temTime" value="nao" onclick="toggleConditional('time-details', false)" checked><label>Não</label>
+                                        </div>
                                     </div>
-                                     <div id="time-details" class="conditional-field">
+                                    <div id="time-details" class="conditional-field">
                                         <label class="block text-sm font-medium text-slate-600">Quantos vendedores?</label>
                                         <input type="number" id="qtdeVendedores" class="w-full p-2 mt-1 border border-slate-300 rounded-md">
                                     </div>
                                 </div>
                                 <div class="p-3 bg-slate-50 rounded-lg border">
                                     <label class="font-medium text-slate-800">Classifica leads (MQL/SQL)?</label>
-                                    <div class="flex items-center gap-3 float-right"><input type="radio" name="classificaLeads" value="sim"><label>Sim</label><input type="radio" name="classificaLeads" value="nao" checked><label>Não</label></div>
+                                    <div class="flex items-center gap-3 float-right">
+                                        <input type="radio" name="classificaLeads" value="sim"><label>Sim</label>
+                                        <input type="radio" name="classificaLeads" value="nao" checked><label>Não</label>
+                                    </div>
                                 </div>
-                                 <div class="p-3 bg-slate-50 rounded-lg border">
+                                <div class="p-3 bg-slate-50 rounded-lg border">
                                     <label class="block font-medium text-slate-800">Qual tempo médio de fechamento?</label>
-                                    <select id="tempoFechamento" class="w-full p-2 mt-1 border border-slate-300 rounded-md bg-white">
+                                    <select id="tempoFechamento" class="w-full p-2 mt-1 border border-slate-300 rounded-md bg-white"> 
                                         <option value="7">7 dias</option>
-                                        <option value="15">15 dias</option>
-                                        <option value="20">20 dias</option>
-                                        <option value="30">30+ dias</option>
+                                        <option value="15">15 dias</option> 
+                                        <option value="20">20 dias</option> 
+                                        <option value="30">30+ dias</option> 
                                     </select>
                                 </div>
-                             </div>
+                            </div>
                         </fieldset>
                     </div>
                 </div>
             </div>
 
-            <!-- Botão de Ação -->
             <div class="mt-10 pt-6 border-t text-center">
-                 <button onclick="generateDiagnosis()" class="bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-xl text-lg flex items-center gap-3 mx-auto">
+                <button onclick="generateDiagnosis()" class="bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-xl text-lg flex items-center gap-3 mx-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     Gerar Meu Diagnóstico
                 </button>
             </div>
         </div>
 
-        <!-- Container dos Resultados (Relatório para PDF) -->
         <div id="results-section" style="display:none;" class="fade-in">
-             <div id="report-wrapper" class="p-8 bg-white rounded-2xl shadow-2xl border border-slate-200">
-                <!-- Cabeçalho do Relatório -->
-                 <header class="flex justify-between items-center pb-6 border-b">
+            <div id="report-wrapper" class="p-8 bg-white rounded-2xl shadow-2xl border border-slate-200">
+                <header class="flex justify-between items-center pb-6 border-b">
                     <div>
-                         <h2 id="reportCompanyName" class="text-2xl font-bold text-slate-900">Conexx Digital</h2>
-                         <p class="text-slate-600" id="segmentoResult">Serviços</p>
+                        <h2 id="reportCompanyName" class="text-2xl font-bold text-slate-900">Conexx Digital</h2> 
+                        <p class="text-slate-600" id="segmentoResult">Serviços</p>
                     </div>
-                     <div class="flex gap-4 text-center">
-                         <div class="px-4">
-                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Faturamento Mensal</h3>
+                    <div class="flex gap-4 text-center">
+                        <div class="px-4">
+                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Faturamento Mensal</h3> 
                             <p class="text-xl font-bold text-slate-800">R$ <span id="faturamentoResult">0</span></p>
-                         </div>
-                         <div class="px-4 border-x">
-                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Ticket Médio</h3>
+                        </div>
+                        <div class="px-4 border-x">
+                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Ticket Médio</h3> 
                             <p class="text-xl font-bold text-slate-800">R$ <span id="ticketResult">0</span></p>
-                         </div>
-                         <div class="px-4">
-                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Meta Anual</h3>
+                        </div>
+                        <div class="px-4">
+                            <h3 class="text-xs text-slate-500 uppercase font-semibold">Meta Anual</h3> 
                             <p class="text-xl font-bold text-slate-800">R$ <span id="metaAnualResult">0</span></p>
-                         </div>
+                        </div>
                     </div>
-                 </header>
+                </header>
 
-                 <!-- Corpo do Relatório -->
-                 <main class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12 mt-8">
-                     <!-- Coluna Esquerda -->
-                     <div class="flex flex-col justify-between">
-                         <div>
+                <main class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12 mt-8">
+                    <div class="flex flex-col justify-between">
+                        <div>
                             <h3 class="text-xl font-bold text-slate-900 mb-4">Índice de Maturidade por Pilar</h3>
                             <div class="mx-auto max-w-sm" id="chart-container">
                                 <canvas id="pillarChart"></canvas>
                             </div>
-                         </div>
-                         <div class="grid grid-cols-3 gap-1 text-center mt-8 pt-6 border-t">
-                            <!-- Card Maturidade -->
+                        </div>
+                        <div class="grid grid-cols-3 gap-1 text-center mt-8 pt-6 border-t">
                             <div class="p-3 border-l-4 border-blue-500">
                                 <div class="flex items-center justify-center gap-2">
                                     <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                     <h4 class="text-sm text-slate-500 font-semibold">Nota de Maturidade</h4>
                                 </div>
                                 <p class="text-4xl font-bold text-slate-800 mt-1" id="notaMaturidade">0.0</p>
-                                <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkMaturidade">0.0</span></p>
+                                <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkMaturidade">0.0</span></p> 
                             </div>
-                             <!-- Card Conversão -->
                             <div class="p-3 border-l-4 border-amber-500">
                                 <div class="flex items-center justify-center gap-2">
                                     <svg class="h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                                    <h4 class="text-sm text-slate-500 font-semibold">Taxa de Conversão</h4>
+                                    <h4 class="text-sm text-slate-500 font-semibold">Taxa de Conversão</h4> 
                                 </div>
-                                <p class="text-4xl font-bold text-slate-800 mt-1" id="taxaConversao">0%</p>
-                                <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkConversao">0%</span></p>
+                                <p class="text-4xl font-bold text-slate-800 mt-1" id="taxaConversao">0%</p> 
+                                <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkConversao">0%</span></p> 
                             </div>
-                             <!-- Card Potencial -->
                             <div class="p-3 border-l-4 border-red-500">
-                                 <div class="flex items-center justify-center gap-2">
+                                <div class="flex items-center justify-center gap-2">
                                     <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                                    <h4 class="text-sm text-slate-500 font-semibold">Potencial de Leads</h4>
-                                 </div>
-                                <p class="text-4xl font-bold text-slate-800 mt-1" id="potencialLeads">+0%</p>
-                                <p class="text-xs text-slate-500">ao otimizar conversão</p>
+                                    <h4 class="text-sm text-slate-500 font-semibold">Potencial de Leads</h4> 
+                                </div>
+                                <p class="text-4xl font-bold text-slate-800 mt-1" id="potencialLeads">+0%</p> 
+                                <p class="text-xs text-slate-500">ao otimizar conversão</p> 
                             </div>
-                         </div>
-                     </div>
-
-                     <!-- Coluna Direita -->
-                     <div class="space-y-8">
-                         <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-4">Funil para Atingir a Meta</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Funil para Atingir a Meta</h3> 
                             <div id="funnel-container" class="space-y-3">
-                                <!-- Funnel steps will be injected here -->
-                            </div>
-                         </div>
-                         <div>
+                                </div>
+                        </div>
+                        <div>
                             <h3 class="text-xl font-bold text-slate-900 mb-4">Recomendações Priorizadas</h3>
-                            <div id="recomendacoesContainer" class="space-y-4"></div>
-                         </div>
-                     </div>
-                 </main>
-                 
-                 <!-- Rodapé do Relatório -->
-                 <footer class="text-center mt-10 pt-6 border-t">
+                            <div id="recomendacoesContainer" class="space-y-4"></div> 
+                        </div>
+                    </div>
+                </main>
+                
+                <footer class="text-center mt-10 pt-6 border-t">
                     <p class="text-sm text-slate-500">Conexx Digital - Conteúdo exclusivo e personalizado.</p>
-                 </footer>
-
-             </div>
-             <!-- Botão de Ação para PDF -->
-             <div class="text-center mt-10 no-print">
-                 <button id="download-btn" onclick="downloadPDF()" class="bg-gray-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition-all flex items-center gap-2 mx-auto">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                     Baixar Diagnóstico em PDF
+                </footer>
+            </div>
+            <div class="text-center mt-10 no-print">
+                <button id="download-btn" onclick="downloadPDF()" class="bg-gray-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition-all flex items-center gap-2 mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Baixar Diagnóstico em PDF
                 </button>
-             </div>
+            </div>
         </div>
-
     </div>
 
     <script>
-        // Use 'var' to prevent re-declaration errors in some execution environments
         var benchmarks = {
-            conversao: { energia: 1.90, software: 1.95, ti: 2.06, educacional: 2.67, produtos: 2.80, financeiro: 3.23, industria: 3.81, servicos: 3.91, saude: 4.07, seguros: 4.18 },
-            maturidade: { software: 8.20, ti: 7.70, educacional: 7.57, financeiro: 6.53, energia: 6.63, saude: 6.43, seguros: 6.33, produtos: 5.77, industria: 6.07, servicos: 6.03 }
+            conversao: { energia: 1.90, software: 1.95, ti: 2.06, educacional: 2.67, produtos: 2.80, financeiro: 3.23, industria: 3.81, servicos: 3.91, saude: 4.07, seguros: 4.18 }, [cite: 22, 23]
+            maturidade: { software: 8.20, ti: 7.70, educacional: 7.57, financeiro: 6.53, energia: 6.63, saude: 6.43, seguros: 6.33, produtos: 5.77, industria: 6.07, servicos: 6.03 } [cite: 23]
         };
-
         var recommendationsText = {
-            'Começar a Investir em Marketing': 'O investimento em marketing digital é o motor para atrair novos clientes. Sem ele, o crescimento fica limitado ao boca a boca.',
-            'Desenvolver Marketing de Conteúdo': 'Produzir conteúdo recorrente (blog, redes sociais) atrai tráfego qualificado e constrói autoridade de marca de forma sustentável.',
-            'Começar a Fazer Anúncios': 'Anúncios pagos em canais como Google e Meta aceleram a geração de leads e permitem alcançar um público-alvo específico com mais rapidez.',
-            'Estruturar a Captação de Leads': 'Definir uma estratégia clara (Inbound/Outbound) é o primeiro passo para gerar um fluxo previsível de oportunidades de negócio.',
-            'Utilizar Landing Pages': 'Landing pages focadas em conversão são essenciais para capturar leads de forma eficiente a partir de campanhas e conteúdos.',
-            'Implementar Rastreamento com UTMs': 'Sem o uso de UTMs, é impossível saber quais campanhas e canais geram mais retorno. Adote essa prática para otimizar seus investimentos.',
-            'Estruturar Análise de Dados': 'Coletar dados é o primeiro passo. Analisá-los para extrair insights é o que permite tomar decisões estratégicas e inteligentes.',
-            'Estruturar um Time Comercial': 'Um time dedicado a vendas é essencial para converter as oportunidades geradas pelo marketing em faturamento real.',
-            'Estruturar Processos com CRM': 'Implementar um CRM é fundamental para organizar o processo de vendas, aumentar a eficiência e não perder negócios.',
-            'Implementar Qualificação de Leads': 'Classificar leads em MQL e SQL permite que o time de vendas foque nas oportunidades mais quentes, aumentando a taxa de conversão.',
-            'Otimizar Captação com WhatsApp': 'Adicionar o WhatsApp no site é uma ação de baixo esforço que aumenta a conversão, oferecendo um canal de contato rápido e direto.'
+            'Começar a Investir em Marketing': 'O investimento em marketing digital é o motor para atrair novos clientes. Sem ele, o crescimento fica limitado ao boca a boca.', [cite: 24, 25]
+            'Desenvolver Marketing de Conteúdo': 'Produzir conteúdo recorrente (blog, redes sociais) atrai tráfego qualificado e constrói autoridade de marca de forma sustentável.', [cite: 25]
+            'Começar a Fazer Anúncios': 'Anúncios pagos em canais como Google e Meta aceleram a geração de leads e permitem alcançar um público-alvo específico com mais rapidez.', [cite: 25]
+            'Estruturar a Captação de Leads': 'Definir uma estratégia clara (Inbound/Outbound) é o primeiro passo para gerar um fluxo previsível de oportunidades de negócio.', [cite: 26]
+            'Utilizar Landing Pages': 'Landing pages focadas em conversão são essenciais para capturar leads de forma eficiente a partir de campanhas e conteúdos.', [cite: 26]
+            'Implementar Rastreamento com UTMs': 'Sem o uso de UTMs, é impossível saber quais campanhas e canais geram mais retorno. Adote essa prática para otimizar seus investimentos.', [cite: 26, 27]
+            'Estruturar Análise de Dados': 'Coletar dados é o primeiro passo. Analisá-los para extrair insights é o que permite tomar decisões estratégicas e inteligentes.', [cite: 27, 28]
+            'Estruturar um Time Comercial': 'Um time dedicado a vendas é essencial para converter as oportunidades geradas pelo marketing em faturamento real.', [cite: 28]
+            'Estruturar Processos com CRM': 'Implementar um CRM é fundamental para organizar o processo de vendas, aumentar a eficiência e não perder negócios.', [cite: 28]
+            'Implementar Qualificação de Leads': 'Classificar leads em MQL e SQL permite que o time de vendas foque nas oportunidades mais quentes, aumentando a taxa de conversão.', [cite: 28]
+            'Otimizar Captação com WhatsApp': 'Adicionar o WhatsApp no site é uma ação de baixo esforço que aumenta a conversão, oferecendo um canal de contato rápido e direto.' [cite: 28, 29]
         };
-
         let pillarChart = null;
-        
+
         function toggleConditional(elementId, show) {
             const element = document.getElementById(elementId);
             if (show) {
-                element.style.display = 'block';
+                element.style.display = 'block'; [cite: 29]
             } else {
-                element.style.display = 'none';
+                element.style.display = 'none'; [cite: 30]
             }
         }
 
         function formatCurrency(value) {
-            return new Intl.NumberFormat('pt-BR', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+            return new Intl.NumberFormat('pt-BR', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value); [cite: 30, 31]
         }
-        
+
         // Helper function to calculate dynamic conversion rates
         function calculateConversionRate(score, minRate, maxRate) {
             // Maps score (0-10) to the rate range [minRate, maxRate]
-            const rate = minRate + (maxRate - minRate) * (score / 10);
+            const rate = minRate + (maxRate - minRate) * (score / 10); [cite: 31, 32]
             return rate / 100; // Return as decimal
         }
 
         function generateDiagnosis() {
             // 1. Get User Data
-            const nomeEmpresa = document.getElementById('nome').value || "Conexx Digital";
-            const segmento = document.getElementById('segmento').value;
-            const faturamentoMensal = parseFloat(document.getElementById('faturamentoMensal').value) || 50000;
-            const metaAnual = parseFloat(document.getElementById('metaAnual').value) || 1200000;
-            const ticketMedio = parseFloat(document.getElementById('ticketMedio').value) || 5000;
+            const nomeEmpresa = document.getElementById('nome').value || "Conexx Digital"; [cite: 32]
+            const segmento = document.getElementById('segmento').value; [cite: 33]
+            const faturamentoMensal = parseFloat(document.getElementById('faturamentoMensal').value) || 50000; [cite: 33]
+            const metaAnual = parseFloat(document.getElementById('metaAnual').value) || 1200000; [cite: 33, 34]
+            const ticketMedio = parseFloat(document.getElementById('ticketMedio').value) || 5000; [cite: 34]
 
             const userAnswers = {
                 // Marketing
-                investeMarketing: document.querySelector('input[name="investeMarketing"]:checked').value === 'sim',
-                produzConteudo: document.querySelector('input[name="produzConteudo"]:checked').value === 'sim',
-                fazAnuncios: document.querySelector('input[name="fazAnuncios"]:checked').value === 'sim',
+                investeMarketing: document.querySelector('input[name="investeMarketing"]:checked').value === 'sim', [cite: 34]
+                produzConteudo: document.querySelector('input[name="produzConteudo"]:checked').value === 'sim', [cite: 34]
+                fazAnuncios: document.querySelector('input[name="fazAnuncios"]:checked').value === 'sim', [cite: 34]
                 // Captação
-                fazCaptacao: document.querySelector('input[name="fazCaptacao"]:checked').value === 'sim',
-                usaLp: document.querySelector('input[name="usaLp"]:checked').value === 'sim',
-                usaUtm: document.querySelector('input[name="usaUtm"]:checked').value === 'sim',
-                temTrackeamento: document.querySelector('input[name="temTrackeamento"]:checked').value === 'sim',
+                fazCaptacao: document.querySelector('input[name="fazCaptacao"]:checked').value === 'sim', [cite: 34]
+                usaLp: document.querySelector('input[name="usaLp"]:checked').value === 'sim', [cite: 34]
+                usaUtm: document.querySelector('input[name="usaUtm"]:checked').value === 'sim', [cite: 34]
+                temTrackeamento: document.querySelector('input[name="temTrackeamento"]:checked').value === 'sim', [cite: 34]
                 // Processos
-                usaCrm: document.querySelector('input[name="usaCrm"]:checked').value === 'sim',
-                analiseDados: document.querySelector('input[name="analiseDados"]:checked').value === 'sim',
-                usaWhatsapp: document.querySelector('input[name="usaWhatsapp"]:checked').value === 'sim',
+                usaCrm: document.querySelector('input[name="usaCrm"]:checked').value === 'sim', [cite: 34]
+                analiseDados: document.querySelector('input[name="analiseDados"]:checked').value === 'sim', [cite: 34]
+                usaWhatsapp: document.querySelector('input[name="usaWhatsapp"]:checked').value === 'sim', [cite: 34]
                 // Comercial
-                temTime: document.querySelector('input[name="temTime"]:checked').value === 'sim',
-                classificaLeads: document.querySelector('input[name="classificaLeads"]:checked').value === 'sim',
+                temTime: document.querySelector('input[name="temTime"]:checked').value === 'sim', [cite: 34]
+                classificaLeads: document.querySelector('input[name="classificaLeads"]:checked').value === 'sim', [cite: 34]
             };
 
             // 2. Calculations
-            const pilarMarketing = (userAnswers.investeMarketing ? 4 : 0) + (userAnswers.produzConteudo ? 3 : 0) + (userAnswers.fazAnuncios ? 3 : 0);
-            const pilarCaptacao = (userAnswers.fazCaptacao ? 3 : 0) + (userAnswers.usaLp ? 2 : 0) + (userAnswers.usaUtm ? 3 : 0) + (userAnswers.temTrackeamento ? 2 : 0);
-            const pilarProcessos = (userAnswers.usaCrm ? 4 : 0) + (userAnswers.analiseDados ? 4 : 0) + (userAnswers.usaWhatsapp ? 2 : 0);
-            const pilarComercial = (userAnswers.temTime ? 5 : 0) + (userAnswers.classificaLeads ? 5 : 0);
-            
-            const pillarScores = [pilarMarketing, pilarCaptacao, pilarProcessos, pilarComercial];
-            const nota = pillarScores.reduce((a, b) => a + b, 0) / pillarScores.length;
+            const pilarMarketing = (userAnswers.investeMarketing ? 4 : 0) + (userAnswers.produzConteudo ? 3 : 0) + (userAnswers.fazAnuncios ? 3 : 0); [cite: 35]
+            const pilarCaptacao = (userAnswers.fazCaptacao ? 3 : 0) + (userAnswers.usaLp ? 2 : 0) + (userAnswers.usaUtm ? 3 : 0) + (userAnswers.temTrackeamento ? 2 : 0); [cite: 36]
+            const pilarProcessos = (userAnswers.usaCrm ? 4 : 0) + (userAnswers.analiseDados ? 4 : 0) + (userAnswers.usaWhatsapp ? 2 : 0); [cite: 37]
+            const pilarComercial = (userAnswers.temTime ? 5 : 0) + (userAnswers.classificaLeads ? 5 : 0); [cite: 38]
 
-            const taxaConversaoUsuario = Math.max(0.5, (nota / 10) * benchmarks.conversao[segmento] * 0.8).toFixed(2);
-            const benchmarkConversao = benchmarks.conversao[segmento];
-            const potencialLeads = ((benchmarkConversao / taxaConversaoUsuario) - 1) * 100;
+            const pillarScores = [pilarMarketing, pilarCaptacao, pilarProcessos, pilarComercial]; [cite: 39]
+            const nota = pillarScores.reduce((a, b) => a + b, 0) / pillarScores.length; [cite: 39]
+
+            // Calculate current conversion rate based on maturity score, bounded by a minimum to avoid division by zero or too small numbers
+            const taxaConversaoUsuario = Math.max(0.5, (nota / 10) * benchmarks.conversao[segmento] * 0.8);
+            const benchmarkConversao = benchmarks.conversao[segmento]; [cite: 40]
+            const potencialLeads = ((benchmarkConversao / taxaConversaoUsuario) - 1) * 100; [cite: 41]
 
             // Dynamic Funnel Rates
-            const leadToMqlRate = calculateConversionRate(nota, 10, 30);
-            const mqlToSqlRate = calculateConversionRate(nota, 10, 20);
-            const sqlToVendaRate = calculateConversionRate(nota, 20, 50);
+            const leadToMqlRate = calculateConversionRate(nota, 10, 30); [cite: 41]
+            const mqlToSqlRate = calculateConversionRate(nota, 10, 20); [cite: 42]
+            const sqlToVendaRate = calculateConversionRate(nota, 20, 50); [cite: 42]
 
             // Funnel Calculation
-            const vendasNecessarias = metaAnual / ticketMedio;
-            const funilSQLs = vendasNecessarias / sqlToVendaRate;
-            const funilMQLs = funilSQLs / mqlToSqlRate;
-            const funilLeads = funilMQLs / leadToMqlRate;
+            const vendasNecessarias = metaAnual / ticketMedio; [cite: 42, 43]
+            const funilSQLs = vendasNecessarias / sqlToVendaRate; [cite: 43]
+            const funilMQLs = funilSQLs / mqlToSqlRate; [cite: 43]
+            const funilLeads = funilMQLs / leadToMqlRate; [cite: 43]
 
             // 3. Update UI
-            document.getElementById('results-section').style.display = 'block';
-            document.getElementById('reportCompanyName').innerText = nomeEmpresa;
-            document.getElementById('segmentoResult').innerText = document.getElementById('segmento').options[document.getElementById('segmento').selectedIndex].text;
-            document.getElementById('faturamentoResult').innerText = formatCurrency(faturamentoMensal);
-            document.getElementById('ticketResult').innerText = formatCurrency(ticketMedio);
-            document.getElementById('metaAnualResult').innerText = formatCurrency(metaAnual);
-            
-            document.getElementById('notaMaturidade').innerText = nota.toFixed(1);
-            document.getElementById('benchmarkMaturidade').innerText = benchmarks.maturidade[segmento].toFixed(1);
-            document.getElementById('taxaConversao').innerText = `${taxaConversaoUsuario}%`;
-            document.getElementById('benchmarkConversao').innerText = `${benchmarkConversao.toFixed(2)}%`;
-            document.getElementById('potencialLeads').innerText = `+${Math.round(potencialLeads)}%`;
-            
+            document.getElementById('results-section').style.display = 'block'; [cite: 44]
+            document.getElementById('reportCompanyName').innerText = nomeEmpresa; [cite: 44]
+            document.getElementById('segmentoResult').innerText = document.getElementById('segmento').options[document.getElementById('segmento').selectedIndex].text; [cite: 44]
+            document.getElementById('faturamentoResult').innerText = formatCurrency(faturamentoMensal); [cite: 44]
+            document.getElementById('ticketResult').innerText = formatCurrency(ticketMedio); [cite: 45]
+            document.getElementById('metaAnualResult').innerText = formatCurrency(metaAnual); [cite: 45]
+            document.getElementById('notaMaturidade').innerText = nota.toFixed(1); [cite: 45]
+            document.getElementById('benchmarkMaturidade').innerText = benchmarks.maturidade[segmento].toFixed(1); [cite: 45]
+            document.getElementById('taxaConversao').innerText = `${taxaConversaoUsuario.toFixed(2)}%`; [cite: 45] // Fixed toFixed(2)
+            document.getElementById('benchmarkConversao').innerText = `${benchmarkConversao.toFixed(2)}%`; [cite: 45]
+            document.getElementById('potencialLeads').innerText = `+${Math.round(potencialLeads)}%`; [cite: 45]
+
             // Inject Funnel HTML with dynamic rates
-            const funnelContainer = document.getElementById('funnel-container');
+            const funnelContainer = document.getElementById('funnel-container'); [cite: 46]
             funnelContainer.innerHTML = `
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg flex justify-between items-center">
-                    <div><p class="text-sm font-medium text-blue-700">Leads Totais</p><p class="text-xs text-blue-600">Taxa de ${(leadToMqlRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-blue-800">${formatCurrency(Math.ceil(funilLeads))}</p>
+                    <div><p class="text-sm font-medium text-blue-700">Leads Totais</p><p class="text-xs text-blue-600">Taxa de ${(leadToMqlRate * 100).toFixed(1)}%</p></div> 
+                    <p class="text-3xl font-bold text-blue-800">${formatCurrency(Math.ceil(funilLeads))}</p> 
                 </div>
                 <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg flex justify-between items-center">
-                    <div><p class="text-sm font-medium text-sky-700">MQLs (Qualificados)</p><p class="text-xs text-sky-600">Taxa de ${(mqlToSqlRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-sky-800">${formatCurrency(Math.ceil(funilMQLs))}</p>
+                    <div><p class="text-sm font-medium text-sky-700">MQLs (Qualificados)</p><p class="text-xs text-sky-600">Taxa de ${(mqlToSqlRate * 100).toFixed(1)}%</p></div> 
+                    <p class="text-3xl font-bold text-sky-800">${formatCurrency(Math.ceil(funilMQLs))}</p> 
                 </div>
                 <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg flex justify-between items-center">
-                    <div><p class="text-sm font-medium text-indigo-700">SQLs (Oportunidades)</p><p class="text-xs text-indigo-600">Taxa de ${(sqlToVendaRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-indigo-800">${formatCurrency(Math.ceil(funilSQLs))}</p>
+                    <div><p class="text-sm font-medium text-indigo-700">SQLs (Oportunidades)</p><p class="text-xs text-indigo-600">Taxa de ${(sqlToVendaRate * 100).toFixed(1)}%</p></div> 
+                    <p class="text-3xl font-bold text-indigo-800">${formatCurrency(Math.ceil(funilSQLs))}</p> 
                 </div>
                 <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg flex justify-between items-center">
-                    <div><p class="text-sm font-medium text-emerald-700">Vendas</p></div>
-                    <p class="text-3xl font-bold text-emerald-800">${formatCurrency(Math.ceil(vendasNecessarias))}</p>
+                    <div><p class="text-sm font-medium text-emerald-700">Vendas</p></div> 
+                    <p class="text-3xl font-bold text-emerald-800">${formatCurrency(Math.ceil(vendasNecessarias))}</p> 
                 </div>
             `;
 
-
             // Recomendações
-            const recomendacoesContainer = document.getElementById('recomendacoesContainer');
+            const recomendacoesContainer = document.getElementById('recomendacoesContainer'); [cite: 48]
             recomendacoesContainer.innerHTML = '';
-            
             if (!userAnswers.investeMarketing) {
-                 recomendacoesContainer.innerHTML += createRecommendationHTML('Começar a Investir em Marketing', 'Crítico', 'Alto');
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Começar a Investir em Marketing', 'Crítico', 'Alto'); [cite: 48]
             } else {
-                if (!userAnswers.produzConteudo) recomendacoesContainer.innerHTML += createRecommendationHTML('Desenvolver Marketing de Conteúdo', 'Alto', 'Médio');
-                 if (!userAnswers.fazAnuncios) recomendacoesContainer.innerHTML += createRecommendationHTML('Começar a Fazer Anúncios', 'Alto', 'Médio');
+                if (!userAnswers.produzConteudo) recomendacoesContainer.innerHTML += createRecommendationHTML('Desenvolver Marketing de Conteúdo', 'Alto', 'Médio'); [cite: 49]
+                if (!userAnswers.fazAnuncios) recomendacoesContainer.innerHTML += createRecommendationHTML('Começar a Fazer Anúncios', 'Alto', 'Médio'); [cite: 49, 50]
             }
-            
-            if (!userAnswers.temTime) {
-                 recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar um Time Comercial', 'Crítico', 'Alto');
+
+            if (!userAnswers.temTime) { [cite: 51]
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar um Time Comercial', 'Crítico', 'Alto'); [cite: 51]
             } else {
-                 if (!userAnswers.classificaLeads) recomendacoesContainer.innerHTML += createRecommendationHTML('Implementar Qualificação de Leads', 'Alto', 'Médio');
+                if (!userAnswers.classificaLeads) recomendacoesContainer.innerHTML += createRecommendationHTML('Implementar Qualificação de Leads', 'Alto', 'Médio'); [cite: 51, 52]
             }
-            
-            if (!userAnswers.fazCaptacao) {
-                recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar a Captação de Leads', 'Crítico', 'Alto');
+
+            if (!userAnswers.fazCaptacao) { [cite: 52]
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar a Captação de Leads', 'Crítico', 'Alto'); [cite: 52]
             } else {
-                 if (!userAnswers.usaLp) recomendacoesContainer.innerHTML += createRecommendationHTML('Utilizar Landing Pages', 'Alto', 'Médio');
+                if (!userAnswers.usaLp) recomendacoesContainer.innerHTML += createRecommendationHTML('Utilizar Landing Pages', 'Alto', 'Médio'); [cite: 52, 53]
             }
 
-            if (!userAnswers.usaCrm) recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar Processos com CRM', 'Alto', 'Alto');
+            if (!userAnswers.usaCrm) recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar Processos com CRM', 'Alto', 'Alto'); [cite: 53]
 
-            if (userAnswers.investeMarketing && !userAnswers.usaUtm) {
-                 recomendacoesContainer.innerHTML += createRecommendationHTML('Implementar Rastreamento com UTMs', 'Médio', 'Baixo');
-            }
-             if (userAnswers.investeMarketing && !userAnswers.analiseDados) {
-                 recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar Análise de Dados', 'Médio', 'Médio');
-            }
-            if (!userAnswers.usaWhatsapp) {
-                 recomendacoesContainer.innerHTML += createRecommendationHTML('Otimizar Captação com WhatsApp', 'Médio', 'Baixo');
+            if (userAnswers.investeMarketing && !userAnswers.usaUtm) { [cite: 53]
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Implementar Rastreamento com UTMs', 'Médio', 'Baixo'); [cite: 54]
             }
 
-
-            if(recomendacoesContainer.innerHTML === '') {
-                 recomendacoesContainer.innerHTML = `<div class="p-4 bg-green-100 rounded-lg border border-green-200 text-green-800 text-center"><p class="font-semibold">Parabéns! Sua operação já adota as principais práticas do mercado.</p></div>`;
+            if (userAnswers.investeMarketing && !userAnswers.analiseDados) { [cite: 54]
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Estruturar Análise de Dados', 'Médio', 'Médio'); [cite: 54]
             }
 
+            if (!userAnswers.usaWhatsapp) { [cite: 54]
+                recomendacoesContainer.innerHTML += createRecommendationHTML('Otimizar Captação com WhatsApp', 'Médio', 'Baixo'); [cite: 55]
+            }
 
+            if(recomendacoesContainer.innerHTML === '') { [cite: 55]
+                recomendacoesContainer.innerHTML = `<div class="p-4 bg-green-100 rounded-lg border border-green-200 text-green-800 text-center"><p class="font-semibold">Parabéns! Sua operação já adota as principais práticas do mercado.</p></div>`; [cite: 55, 56]
+            }
             renderPillarChart(pillarScores);
             document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
+
         async function downloadPDF() {
             const button = document.getElementById('download-btn');
-            button.innerHTML = '<span class="animate-pulse">Gerando PDF...</span>';
+            const originalButtonContent = button.innerHTML; // Salvar o conteúdo original
+            button.innerHTML = '<span class="animate-pulse">Gerando PDF...</span>'; [cite: 57]
             button.disabled = true;
 
-            const element = document.getElementById('report-wrapper');
-            const companyName = document.getElementById('nome').value || 'Diagnostico';
-            const fileName = `Diagnostico - ${companyName.replace(/ /g, '_')}.pdf`;
+            const element = document.getElementById('report-wrapper'); [cite: 57]
+            const companyName = document.getElementById('nome').value || 'Diagnostico'; [cite: 58]
+            const fileName = `Diagnostico - ${companyName.replace(/ /g, '_')}.pdf`; [cite: 58]
 
-            // Create a clone of the report to generate the PDF from.
-            // This avoids modifying the live view.
-            const elementToPrint = element.cloneNode(true);
+            // Criar um clone do relatório para gerar o PDF a partir dele. 
+            // Isso evita modificar a visualização ao vivo. 
+            const elementToPrint = element.cloneNode(true); [cite: 60]
 
-            // Find the original canvas and the container in the clone
-            const originalCanvas = document.getElementById('pillarChart');
-            const chartContainerInClone = elementToPrint.querySelector('#chart-container');
-            const canvasInClone = elementToPrint.querySelector('#pillarChart');
+            // Encontrar o canvas original e o contêiner no clone 
+            const originalCanvas = document.getElementById('pillarChart'); [cite: 60]
+            const chartContainerInClone = elementToPrint.querySelector('#chart-container'); [cite: 61]
+            const canvasInClone = elementToPrint.querySelector('#pillarChart'); [cite: 61]
 
-            // Create a static image from the original chart
-            const chartImage = new Image();
-            // CORRECTED LINE: Use toDataURL on the canvas element, not the Chart.js instance helper.
-            chartImage.src = originalCanvas.toDataURL('image/png', 1.0);
-            chartImage.style.width = '100%';
-            chartImage.style.height = 'auto';
+            if (originalCanvas && chartContainerInClone && canvasInClone) {
+                try {
+                    const chartImage = new Image();
+                    // LINHA CORRIGIDA: Use toDataURL no elemento canvas, não na instância do Chart.js 
+                    chartImage.src = originalCanvas.toDataURL('image/png', 1.0);
+                    chartImage.style.width = '100%'; [cite: 62, 63]
+                    chartImage.style.height = 'auto'; [cite: 63]
 
-            // Wait for the image to be fully loaded before proceeding
-            await new Promise(resolve => { chartImage.onload = resolve; });
+                    // Esperar que a imagem seja totalmente carregada antes de prosseguir 
+                    await new Promise((resolve, reject) => {
+                        chartImage.onload = resolve;
+                        chartImage.onerror = () => reject("Failed to load chart image from canvas.");
+                    });
 
-            // Replace the canvas in the clone with the static image. This is more reliable.
-            if (chartContainerInClone && canvasInClone) {
-                chartContainerInClone.replaceChild(chartImage, canvasInClone);
+                    // Substituir o canvas no clone pela imagem estática. Isso é mais confiável. 
+                    chartContainerInClone.replaceChild(chartImage, canvasInClone); [cite: 65]
+                } catch (error) {
+                    console.error("Erro ao converter o gráfico para imagem ou carregar a imagem:", error);
+                    // Opcional: Avisar o usuário ou prosseguir sem o gráfico no PDF
+                }
+            } else {
+                console.warn("Elementos do gráfico não encontrados para substituição no PDF.");
             }
 
             const opt = {
@@ -595,18 +610,24 @@
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Generate the PDF from the modified clone
-            await html2pdf().from(elementToPrint).set(opt).save();
-
-            // Restore the button to its original state
-            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Baixar Diagnóstico em PDF';
-            button.disabled = false;
+            try {
+                // Gerar o PDF a partir do clone modificado 
+                await html2pdf().from(elementToPrint).set(opt).save(); [cite: 67]
+            } catch (error) {
+                console.error("Erro ao gerar o PDF:", error);
+                alert("Houve um erro ao gerar o PDF. Por favor, tente novamente.");
+            } finally {
+                // Restaurar o botão para o seu estado original 
+                button.innerHTML = originalButtonContent;
+                button.disabled = false; [cite: 68]
+            }
         }
 
         function createRecommendationHTML(title, impact, effort) {
-            const impactColor = impact === 'Crítico' ? 'bg-red-500' : (impact === 'Alto' ? 'bg-orange-500' : 'bg-yellow-500');
-            const effortColor = effort === 'Alto' ? 'bg-red-500' : (effort === 'Médio' ? 'bg-yellow-500' : 'bg-green-500');
-            const description = recommendationsText[title] || '';
+            const impactColor = impact === 'Crítico' ? 'bg-red-500' : (impact === 'Alto' ? 'bg-orange-500' : 'bg-yellow-500'); [cite: 68, 69]
+            const effortColor = effort === 'Alto' ? 'bg-red-500' : (effort === 'Médio' ? 'bg-yellow-500' : 'bg-green-500'); [cite: 69, 70]
+            const description = recommendationsText[title] || ''; [cite: 70, 71]
+
             return `
                 <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
                     <h4 class="text-base font-bold text-slate-800 mb-2">${title}</h4>
@@ -625,33 +646,33 @@
             }
             const ctx = document.getElementById('pillarChart').getContext('2d');
             pillarChart = new Chart(ctx, {
-                type: 'radar', 
+                type: 'radar',
                 data: {
                     labels: ['Marketing', 'Captação', 'Processos', 'Comercial'],
                     datasets: [{
                         label: 'Sua Maturidade',
                         data: data,
                         fill: true,
-                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                        borderColor: 'rgb(59, 130, 246)',
-                        pointBackgroundColor: 'rgb(59, 130, 246)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(59, 130, 246)'
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)', [cite: 73]
+                        borderColor: 'rgb(59, 130, 246)', [cite: 73]
+                        pointBackgroundColor: 'rgb(59, 130, 246)', [cite: 73]
+                        pointBorderColor: '#fff', [cite: 73]
+                        pointHoverBackgroundColor: '#fff', [cite: 73]
+                        pointHoverBorderColor: 'rgb(59, 130, 246)' [cite: 73]
                     }, {
                         label: 'Benchmark do Setor',
                         data: [7.5, 7.0, 8.0, 7.8], // Static benchmark data for demo
                         fill: true,
-                        backgroundColor: 'rgba(203, 213, 225, 0.2)',
-                        borderColor: 'rgb(100, 116, 139)',
-                        pointBackgroundColor: 'rgb(100, 116, 139)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(100, 116, 139)'
+                        backgroundColor: 'rgba(203, 213, 225, 0.2)', [cite: 73]
+                        borderColor: 'rgb(100, 116, 139)', [cite: 73]
+                        pointBackgroundColor: 'rgb(100, 116, 139)', [cite: 73]
+                        pointBorderColor: '#fff', [cite: 73]
+                        pointHoverBackgroundColor: '#fff', [cite: 73]
+                        pointHoverBorderColor: 'rgb(100, 116, 139)' [cite: 73]
                     }]
                 },
                 options: {
-                    animation: false, 
+                    animation: false,
                     elements: {
                         line: {
                             borderWidth: 3
@@ -666,13 +687,13 @@
                             suggestedMax: 10
                         }
                     },
-                    plugins: { 
-                        legend: { 
-                            position: 'bottom' 
-                        } 
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
                     }
                 }
-            });
+            }); [cite: 74]
         }
     </script>
 </body>
