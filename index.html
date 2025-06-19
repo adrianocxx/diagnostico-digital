@@ -290,7 +290,7 @@
 
         <!-- Container dos Resultados (Relatório para PDF) -->
         <div id="results-section" style="display:none;" class="fade-in">
-             <div id="report-wrapper" class="p-8 bg-white rounded-2xl shadow-2xl border border-slate-200 pdf-content">
+             <div id="report-wrapper" class="p-6 bg-white rounded-xl shadow-lg border border-slate-200 pdf-content" style="max-width: 1200px; margin: 0 auto;">
                 <!-- Cabeçalho do Relatório -->
                  <header class="flex justify-between items-center pb-6 border-b">
                     <div>
@@ -314,57 +314,57 @@
                  </header>
 
                  <!-- Corpo do Relatório -->
-                 <main class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12 mt-8">
+                 <main class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-8 mt-6">
                      <!-- Coluna Esquerda -->
                      <div class="flex flex-col justify-between">
                          <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-4">Índice de Maturidade por Pilar</h3>
-                            <div class="mx-auto max-w-sm" id="chart-container">
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Índice de Maturidade por Pilar</h3>
+                            <div class="mx-auto max-w-xs" id="chart-container" style="height: 280px;">
                                 <canvas id="pillarChart"></canvas>
                             </div>
                          </div>
-                         <div class="grid grid-cols-3 gap-1 text-center mt-8 pt-6 border-t">
+                         <div class="grid grid-cols-3 gap-2 text-center mt-6 pt-4 border-t">
                             <!-- Card Maturidade -->
-                            <div class="p-3 border-l-4 border-blue-500">
-                                <div class="flex items-center justify-center gap-2">
-                                    <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                                    <h4 class="text-sm text-slate-500 font-semibold">Nota de Maturidade</h4>
+                            <div class="p-2 border-l-4 border-blue-500">
+                                <div class="flex items-center justify-center gap-1">
+                                    <svg class="h-4 w-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                    <h4 class="text-xs text-slate-500 font-semibold">Nota de Maturidade</h4>
                                 </div>
-                                <p class="text-4xl font-bold text-slate-800 mt-1" id="notaMaturidade">0.0</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1" id="notaMaturidade">0.0</p>
                                 <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkMaturidade">0.0</span></p>
                             </div>
                              <!-- Card Conversão -->
-                            <div class="p-3 border-l-4 border-amber-500">
-                                <div class="flex items-center justify-center gap-2">
-                                    <svg class="h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                                    <h4 class="text-sm text-slate-500 font-semibold">Taxa de Conversão</h4>
+                            <div class="p-2 border-l-4 border-amber-500">
+                                <div class="flex items-center justify-center gap-1">
+                                    <svg class="h-4 w-4 text-amber-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    <h4 class="text-xs text-slate-500 font-semibold">Taxa de Conversão</h4>
                                 </div>
-                                <p class="text-4xl font-bold text-slate-800 mt-1" id="taxaConversao">0%</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1" id="taxaConversao">0%</p>
                                 <p class="text-xs text-slate-500">Benchmark: <span id="benchmarkConversao">0%</span></p>
                             </div>
                              <!-- Card Potencial -->
-                            <div class="p-3 border-l-4 border-red-500">
-                                 <div class="flex items-center justify-center gap-2">
-                                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                                    <h4 class="text-sm text-slate-500 font-semibold">Potencial de Leads</h4>
+                            <div class="p-2 border-l-4 border-red-500">
+                                 <div class="flex items-center justify-center gap-1">
+                                    <svg class="h-4 w-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                                    <h4 class="text-xs text-slate-500 font-semibold">Potencial de Leads</h4>
                                  </div>
-                                <p class="text-4xl font-bold text-slate-800 mt-1" id="potencialLeads">+0%</p>
+                                <p class="text-3xl font-bold text-slate-800 mt-1" id="potencialLeads">+0%</p>
                                 <p class="text-xs text-slate-500">ao otimizar conversão</p>
                             </div>
                          </div>
                      </div>
 
                      <!-- Coluna Direita -->
-                     <div class="space-y-8">
+                     <div class="space-y-6">
                          <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-4">Funil para Atingir a Meta</h3>
-                            <div id="funnel-container" class="space-y-3">
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Funil para Atingir a Meta</h3>
+                            <div id="funnel-container" class="space-y-2">
                                 <!-- Funnel steps will be injected here -->
                             </div>
                          </div>
                          <div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-4">Recomendações Priorizadas</h3>
-                            <div id="recomendacoesContainer" class="space-y-4"></div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Recomendações Priorizadas</h3>
+                            <div id="recomendacoesContainer" class="space-y-3"></div>
                          </div>
                      </div>
                  </main>
@@ -497,21 +497,21 @@
             // Inject Funnel HTML with dynamic rates
             const funnelContainer = document.getElementById('funnel-container');
             funnelContainer.innerHTML = `
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg flex justify-between items-center">
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r-lg flex justify-between items-center">
                     <div><p class="text-sm font-medium text-blue-700">Leads Totais</p><p class="text-xs text-blue-600">Taxa de ${(leadToMqlRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-blue-800">${formatCurrency(Math.ceil(funilLeads))}</p>
+                    <p class="text-2xl font-bold text-blue-800">${formatCurrency(Math.ceil(funilLeads))}</p>
                 </div>
-                <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg flex justify-between items-center">
+                <div class="bg-sky-50 border-l-4 border-sky-500 p-3 rounded-r-lg flex justify-between items-center">
                     <div><p class="text-sm font-medium text-sky-700">MQLs (Qualificados)</p><p class="text-xs text-sky-600">Taxa de ${(mqlToSqlRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-sky-800">${formatCurrency(Math.ceil(funilMQLs))}</p>
+                    <p class="text-2xl font-bold text-sky-800">${formatCurrency(Math.ceil(funilMQLs))}</p>
                 </div>
-                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg flex justify-between items-center">
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-3 rounded-r-lg flex justify-between items-center">
                     <div><p class="text-sm font-medium text-indigo-700">SQLs (Oportunidades)</p><p class="text-xs text-indigo-600">Taxa de ${(sqlToVendaRate * 100).toFixed(1)}%</p></div>
-                    <p class="text-3xl font-bold text-indigo-800">${formatCurrency(Math.ceil(funilSQLs))}</p>
+                    <p class="text-2xl font-bold text-indigo-800">${formatCurrency(Math.ceil(funilSQLs))}</p>
                 </div>
-                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg flex justify-between items-center">
+                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-r-lg flex justify-between items-center">
                     <div><p class="text-sm font-medium text-emerald-700">Vendas</p></div>
-                    <p class="text-3xl font-bold text-emerald-800">${formatCurrency(Math.ceil(vendasNecessarias))}</p>
+                    <p class="text-2xl font-bold text-emerald-800">${formatCurrency(Math.ceil(vendasNecessarias))}</p>
                 </div>
             `;
 
@@ -568,32 +568,40 @@
 
             try {
                 // Aguarda um momento para garantir que o gráfico esteja renderizado
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(resolve => setTimeout(resolve, 1000));
 
                 const element = document.getElementById('report-wrapper');
                 const companyName = document.getElementById('nome').value || 'Diagnostico';
                 const fileName = `Diagnostico - ${companyName.replace(/ /g, '_')}.pdf`;
 
-                // Configurações otimizadas para o html2pdf
+                // Configurações otimizadas para o html2pdf em formato paisagem
                 const opt = {
-                    margin: [10, 10, 10, 10],
+                    margin: [5, 5, 5, 5], // Margens menores para aproveitar melhor o espaço
                     filename: fileName,
-                    image: { type: 'jpeg', quality: 0.98 },
+                    image: { type: 'jpeg', quality: 0.95 },
                     html2canvas: { 
-                        scale: 2,
+                        scale: 1.5, // Reduzido para caber melhor
                         useCORS: true,
                         logging: false,
                         letterRendering: true,
                         allowTaint: true,
-                        backgroundColor: '#ffffff'
+                        backgroundColor: '#ffffff',
+                        width: element.scrollWidth,
+                        height: element.scrollHeight,
+                        windowWidth: element.scrollWidth,
+                        windowHeight: element.scrollHeight
                     },
                     jsPDF: { 
                         unit: 'mm', 
                         format: 'a4', 
-                        orientation: 'portrait',
+                        orientation: 'landscape', // Mudado para paisagem
                         compress: true
                     },
-                    pagebreak: { mode: 'avoid-all' }
+                    pagebreak: { 
+                        mode: ['avoid-all', 'css', 'legacy'],
+                        before: '.page-break',
+                        after: '.page-break'
+                    }
                 };
 
                 // Gera o PDF diretamente sem clonar
@@ -614,13 +622,13 @@
             const effortColor = effort === 'Alto' ? 'bg-red-500' : (effort === 'Médio' ? 'bg-yellow-500' : 'bg-green-500');
             const description = recommendationsText[title] || '';
             return `
-                <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <h4 class="text-base font-bold text-slate-800 mb-2">${title}</h4>
-                    <div class="flex items-center gap-4 mb-3 text-xs">
-                        <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full ${impactColor}"></span> Impacto: ${impact}</span>
-                        <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full ${effortColor}"></span> Esforço: ${effort}</span>
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                    <h4 class="text-sm font-bold text-slate-800 mb-1">${title}</h4>
+                    <div class="flex items-center gap-3 mb-2 text-xs">
+                        <span class="flex items-center gap-1"><span class="h-2 w-2 rounded-full ${impactColor}"></span> Impacto: ${impact}</span>
+                        <span class="flex items-center gap-1"><span class="h-2 w-2 rounded-full ${effortColor}"></span> Esforço: ${effort}</span>
                     </div>
-                    <p class="text-sm text-slate-600">${description}</p>
+                    <p class="text-xs text-slate-600">${description}</p>
                 </div>
             `;
         }
