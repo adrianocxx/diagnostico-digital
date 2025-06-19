@@ -39,7 +39,13 @@
             border-left: 2px solid #e2e8f0;
         }
 
-        /* Estilos de Impressão (Fallback) */
+        /* Estilos para garantir que elementos sejam visíveis no PDF */
+        .pdf-content {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        /* Estilos de Impressão */
         @media print {
             body * {
                 visibility: hidden;
@@ -56,9 +62,10 @@
                 padding: 0;
                 box-shadow: none;
                 border: none;
+                background-color: white !important;
             }
             .no-print {
-                display: none;
+                display: none !important;
             }
         }
     </style>
@@ -283,7 +290,7 @@
 
         <!-- Container dos Resultados (Relatório para PDF) -->
         <div id="results-section" style="display:none;" class="fade-in">
-             <div id="report-wrapper" class="p-8 bg-white rounded-2xl shadow-2xl border border-slate-200">
+             <div id="report-wrapper" class="p-8 bg-white rounded-2xl shadow-2xl border border-slate-200 pdf-content">
                 <!-- Cabeçalho do Relatório -->
                  <header class="flex justify-between items-center pb-6 border-b">
                     <div>
@@ -437,7 +444,7 @@
                 fazAnuncios: document.querySelector('input[name="fazAnuncios"]:checked').value === 'sim',
                 // Captação
                 fazCaptacao: document.querySelector('input[name="fazCaptacao"]:checked').value === 'sim',
-                usaLp: document.querySelector('input[name="usaLp"]:checked').value === 'sim',
+                usaLp: document.querySelector('input[name="usaLp"]:checked') && document.querySelector('input[name="usaLp"]:checked').value === 'sim',
                 usaUtm: document.querySelector('input[name="usaUtm"]:checked').value === 'sim',
                 temTrackeamento: document.querySelector('input[name="temTrackeamento"]:checked').value === 'sim',
                 // Processos
@@ -559,48 +566,47 @@
             button.innerHTML = '<span class="animate-pulse">Gerando PDF...</span>';
             button.disabled = true;
 
-            const element = document.getElementById('report-wrapper');
-            const companyName = document.getElementById('nome').value || 'Diagnostico';
-            const fileName = `Diagnostico - ${companyName.replace(/ /g, '_')}.pdf`;
+            try {
+                // Aguarda um momento para garantir que o gráfico esteja renderizado
+                await new Promise(resolve => setTimeout(resolve, 500));
 
-            // Create a clone of the report to generate the PDF from.
-            // This avoids modifying the live view.
-            const elementToPrint = element.cloneNode(true);
+                const element = document.getElementById('report-wrapper');
+                const companyName = document.getElementById('nome').value || 'Diagnostico';
+                const fileName = `Diagnostico - ${companyName.replace(/ /g, '_')}.pdf`;
 
-            // Find the original canvas and the container in the clone
-            const originalCanvas = document.getElementById('pillarChart');
-            const chartContainerInClone = elementToPrint.querySelector('#chart-container');
-            const canvasInClone = elementToPrint.querySelector('#pillarChart');
+                // Configurações otimizadas para o html2pdf
+                const opt = {
+                    margin: [10, 10, 10, 10],
+                    filename: fileName,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        useCORS: true,
+                        logging: false,
+                        letterRendering: true,
+                        allowTaint: true,
+                        backgroundColor: '#ffffff'
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true
+                    },
+                    pagebreak: { mode: 'avoid-all' }
+                };
 
-            // Create a static image from the original chart
-            const chartImage = new Image();
-            // CORRECTED LINE: Use toDataURL on the canvas element, not the Chart.js instance helper.
-            chartImage.src = originalCanvas.toDataURL('image/png', 1.0);
-            chartImage.style.width = '100%';
-            chartImage.style.height = 'auto';
+                // Gera o PDF diretamente sem clonar
+                await html2pdf().from(element).set(opt).save();
 
-            // Wait for the image to be fully loaded before proceeding
-            await new Promise(resolve => { chartImage.onload = resolve; });
-
-            // Replace the canvas in the clone with the static image. This is more reliable.
-            if (chartContainerInClone && canvasInClone) {
-                chartContainerInClone.replaceChild(chartImage, canvasInClone);
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Ocorreu um erro ao gerar o PDF. Por favor, tente novamente.');
+            } finally {
+                // Restaura o botão
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Baixar Diagnóstico em PDF';
+                button.disabled = false;
             }
-
-            const opt = {
-                margin: [10, 5, 10, 5], // top, left, bottom, right
-                filename: fileName,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            // Generate the PDF from the modified clone
-            await html2pdf().from(elementToPrint).set(opt).save();
-
-            // Restore the button to its original state
-            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Baixar Diagnóstico em PDF';
-            button.disabled = false;
         }
 
         function createRecommendationHTML(title, impact, effort) {
@@ -652,6 +658,8 @@
                 },
                 options: {
                     animation: false, 
+                    responsive: true,
+                    maintainAspectRatio: true,
                     elements: {
                         line: {
                             borderWidth: 3
